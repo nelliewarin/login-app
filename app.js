@@ -22,6 +22,10 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use((req, res, next) => {
+  res.locals.user = req.session.user;
+  next();
+});
 
 function isAuthenticated(req, res, next) {
   if (req.session && req.session.user) {
@@ -32,7 +36,14 @@ function isAuthenticated(req, res, next) {
 }
 
 // Handlebars setup
-app.engine("handlebars", expressHandlebars.engine());
+app.engine(
+  "handlebars",
+  expressHandlebars.engine({
+    defaultLayout: "main",
+    layoutsDir: path.join(__dirname, "views", "layouts"),
+    partialsDir: path.join(__dirname, "views", "partials"),
+  })
+);
 app.set("view engine", "handlebars");
 
 // Routes

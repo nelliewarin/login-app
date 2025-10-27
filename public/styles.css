@@ -1,0 +1,41 @@
+:root {
+  --primary-color: #f9fafb;
+  --secondary-color: #282828;
+  --accent-color: #cc2e4b;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--primary-color);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--secondary-color);
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--primary-color);
+
+  padding: 8px 12px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
