@@ -63,7 +63,7 @@ app.post("/login", async (req, res) => {
     (await bcrypt.compare(password, ADMIN_USER.passwordHash))
   ) {
     req.session.user = username;
-    return res.redirect("/admin");
+    return res.redirect("/");
   }
   res.render("login", { title: "Login", error: "Invalid credentials" });
 });
@@ -72,10 +72,6 @@ app.get("/logout", (req, res) => {
   req.session.destroy(() => {
     res.redirect("/");
   });
-});
-
-app.get("/admin", isAuthenticated, (req, res) => {
-  res.render("admin", { title: "Admin Dashboard", user: req.session.user });
 });
 
 // Start the server
